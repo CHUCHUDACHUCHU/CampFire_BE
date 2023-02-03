@@ -19,6 +19,13 @@ app.use('/api', routes);
 
 require('./modules/publicAPI.js');
 
+const { swaggerUi, specs } = require('./swagger.js');
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(specs, { explorer: true })
+);
+
 const ErrorHandler = require('./middlewares/error.handler.middleware');
 app.use(ErrorHandler);
 
