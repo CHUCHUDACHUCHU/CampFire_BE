@@ -12,7 +12,7 @@ const options = {
         },
         servers: [
             {
-                url: 'https://dev.sparta-chuchu.shop', // 요청 URL
+                url: 'http://localhost:3000', // 요청 URL
             },
         ],
     },
