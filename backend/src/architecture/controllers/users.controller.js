@@ -170,7 +170,8 @@ class UsersController {
         try {
             const { phoneNumber } = req.params;
 
-            const ip = req.ip;
+            const ip =
+                req.headers['x-forwarded-for'] || req.connection.remoteAddress;
             if (await redisCli.get(`${ip}::banned`)) {
                 return res
                     .status(401)
