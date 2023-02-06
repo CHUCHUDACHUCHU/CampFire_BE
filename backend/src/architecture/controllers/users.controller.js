@@ -1,9 +1,9 @@
 const UsersService = require('../services/users.service');
 const jwt = require('jsonwebtoken');
 const CryptoJS = require('crypto-js');
-const Cache = require('memory-cache');
 const { createRandomNumber } = require('../../util/auth-encryption.util');
 const axios = require('axios');
+const redisCli = require('../../core/redis');
 
 class UsersController {
     usersService = new UsersService();
@@ -167,10 +167,16 @@ class UsersController {
 
     //문자인증
     sendMessage = async (req, res) => {
-        const { phoneNumber } = req.params;
-
-        const tel = phoneNumber.split('-').join('');
         try {
+            const { phoneNumber } = req.params;
+
+            const ip = req.ip;
+            if (await redisCli.get(`${ip}::banned`)) {
+                return res
+                    .status(401)
+                    .json({ errorMessage: '요청횟수 초과되었습니다.' });
+            }
+
             const isExistPhoneNumber =
                 await this.usersService.isExistPhoneNumber(phoneNumber);
 
@@ -178,11 +184,26 @@ class UsersController {
                 throw new Error('해당하는 이메일 혹은 비밀번호가 없습니다.');
             }
 
+            const tel = phoneNumber.split('-').join('');
             const verificationCode = createRandomNumber();
             const date = Date.now().toString();
 
-            Cache.del(tel);
-            Cache.put(tel, verificationCode);
+            await redisCli.set(tel, verificationCode, {
+                EX: 180,
+            });
+
+            await redisCli.incr(ip);
+
+            if ((await redisCli.get(ip)) === '1') {
+                await redisCli.expire(ip, 60);
+            }
+
+            if (Number((await redisCli.get(ip)) >= 5)) {
+                const bannedIp = `${ip}::banned`;
+                await redisCli.set(bannedIp, 1, {
+                    EX: 7200,
+                });
+            }
 
             const method = 'POST';
             const space = ' ';
@@ -225,7 +246,6 @@ class UsersController {
             console.log('문자보내짐?!!', smsRes.data);
             res.status(200).json({ message: '인증번호 발송 완료!' });
         } catch (error) {
-            Cache.del(tel);
             console.log(error);
             if (error.message === '해당하는 이메일 혹은 비밀번호가 없습니다.') {
                 return res.status(412).json({
@@ -240,21 +260,21 @@ class UsersController {
         console.log('verifyCode =======', phoneNumber, verifyCode);
         const tel = phoneNumber.split('-').join('');
 
-        const CacheData = Cache.get(tel);
-        console.log(CacheData);
-        if (!CacheData) {
+        const redisData = await redisCli.get(tel);
+        console.log(redisData);
+        if (!redisData) {
             return res
                 .status(400)
                 .json({ errorMessage: '인증번호를 다시 요청해주세요.' });
         }
 
-        if (CacheData !== verifyCode) {
+        if (redisData !== verifyCode) {
             return res
                 .status(400)
                 .json({ errorMessage: '인증번호를 다시 요청해주세요.' });
         }
 
-        Cache.del(phoneNumber);
+        await redisCli.del(phoneNumber);
         return res.status(201).json({ message: '인증성공!' });
     };
 
