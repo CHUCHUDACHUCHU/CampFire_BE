@@ -98,7 +98,9 @@ class AuthsController {
         try {
             const { phoneNumber } = req.params;
 
-            const ip = req.ip;
+            const ip =
+                req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+            console.log(ip);
             if (await redisCli.get(`${ip}::banned`)) {
                 return res
                     .status(401)
