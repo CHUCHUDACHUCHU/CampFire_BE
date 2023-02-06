@@ -41,5 +41,5 @@ services:
             SMS_ACCESS_KEY: $SMS_ACCESS_KEY
             SMS_SECRET_KEY: $SMS_SECRET_KEY
             CAMPSERVISEKEY: $CAMPSERVISEKEY
-            REDIS_HOST: $RESDIS_HOST
+            REDIS_HOST: $REDIS_HOST
             REDIS_PORT: $REDIS_PORT
