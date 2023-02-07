@@ -70,7 +70,7 @@ class HostsService {
 
         const accessToken = createHostToken(host.hostId, '1h');
         const refreshToken = createHostToken('', '1d');
-        await this.hostsRepository.updateRefreshToken(refreshToken, email);
+        await this.hostsRepository.updateken(refreshToken, email);
 
         return { accessToken, refreshToken };
     };
