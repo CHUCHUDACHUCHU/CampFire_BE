@@ -1,11 +1,13 @@
 const HostsRepository = require('../repositories/hosts.repository');
-const { Hosts, Camps } = require('../../models');
+const UsersRepository = require('../repositories/users.repository');
+const { Hosts, Camps, Users } = require('../../models');
 require('dotenv').config();
 const { hash } = require('../../util/auth-encryption.util');
 const { createHostToken } = require('../../util/auth-jwtToken.util.js');
 
 class HostsService {
     hostsRepository = new HostsRepository(Hosts, Camps);
+    usersRepository = new UsersRepository(Users);
 
     //회원가입 API
     signUp = async (
@@ -105,6 +107,28 @@ class HostsService {
             phoneNumber,
             profileImg
         );
+    };
+
+    getUserInfo = async (userId) => {
+        const user = await this.usersRepository.findOneUser(userId);
+        if (!user) throw '존재하지 않는 사용자입니다.';
+
+        const bookList = await this.usersRepository.findBooksListByUser(userId);
+        const bookIdList = [];
+        bookList.map((v) => {
+            bookIdList.push(v.bookId);
+        });
+
+        return {
+            userId: user.userId,
+            email: user.email,
+            userName: user.userName,
+            phoneNumber: user.phoneNumber,
+            profileImg: user.profileImg,
+            bookIdList,
+            createdAt: user.createdAt,
+            updatedAt: user.updatedAt,
+        };
     };
 
     deleteHost = async (hostId, password) => {

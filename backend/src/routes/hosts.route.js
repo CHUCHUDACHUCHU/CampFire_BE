@@ -18,6 +18,7 @@ router.put(
     hostsController.updateHost
 );
 router.delete('/', authHostMiddleware, hostsController.deleteHost);
+router.get('/:userId', hostsController.getUserInfo);
 // 문자 인증
 router.get('/sms/:phoneNumber', hostsController.sendMessage);
 router.post('/sms/verify', hostsController.verifyCode);
