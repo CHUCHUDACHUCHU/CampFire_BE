@@ -62,7 +62,7 @@ class AuthsService {
             return { email, userName, profileImg, snsId, provider };
         }
         const accessToken = createUserToken(user.userId, '1h');
-        const refreshToken = createUserToken('refreshToken', '1d');
+        const refreshToken = createUserToken('', '1d');
         await this.authsRepository.updateRefreshToken(refreshToken, email);
 
         return { accessToken, refreshToken };
@@ -117,7 +117,7 @@ class AuthsService {
             return { email, userName, profileImg, snsId, provider };
         }
         const accessToken = createUserToken(user.userId, '1h');
-        const refreshToken = createUserToken('refreshToken', '1d');
+        const refreshToken = createUserToken('', '1d');
         await this.authsRepository.updateRefreshToken(refreshToken, email);
 
         return { accessToken, refreshToken };
@@ -179,7 +179,7 @@ class AuthsService {
             return { email, userName, profileImg, snsId, provider };
         }
         const accessToken = createUserToken(user.userId, '1h');
-        const refreshToken = createUserToken('refreshToken', '1d');
+        const refreshToken = createUserToken('', '1d');
         await this.authsRepository.updateRefreshToken(refreshToken, email);
 
         return { accessToken, refreshToken };
@@ -205,7 +205,7 @@ class AuthsService {
         );
 
         const accessToken = createUserToken(user.userId, '1h');
-        const refreshToken = createUserToken('refreshToken', '1d');
+        const refreshToken = createUserToken('', '1d');
         await this.authsRepository.updateRefreshToken(refreshToken, email);
 
         return { accessToken, refreshToken };
