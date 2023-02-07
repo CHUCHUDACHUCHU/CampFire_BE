@@ -8,7 +8,6 @@ services:
             - '443:443'
         depends_on:
             - backend
-
     backend:
         image: yoon7548/docker-backend-campfire
         container_name: app_backend
