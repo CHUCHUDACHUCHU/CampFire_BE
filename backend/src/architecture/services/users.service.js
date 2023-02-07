@@ -57,7 +57,7 @@ class UsersService {
         }
 
         const accessToken = createUserToken(user.userId, '1h');
-        const refreshToken = createUserToken('refreshToken', '1d');
+        const refreshToken = createUserToken('', '1d');
         await this.usersRepository.updateRefreshToken(refreshToken, email);
 
         return { accessToken, refreshToken };

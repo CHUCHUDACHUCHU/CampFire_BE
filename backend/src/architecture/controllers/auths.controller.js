@@ -126,7 +126,7 @@ class AuthsController {
             await redisCli.incr(ip);
 
             if ((await redisCli.get(ip)) === '1') {
-                await redisCli.expire(ip, 60);
+                await redisCli.expire(ip, 300);
             }
 
             if (Number((await redisCli.get(ip)) >= 5)) {
