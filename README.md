@@ -1,5 +1,8 @@
-# CampFird_backend
-캠핑예약사이트입니다. 캠핑장, 날짜, 인원수 +상세조건에 따라 원하는 캠핑장을 예약하세요!
+<div align="center">
+<h1> CampFird_backend </h1>
+<img width="100%" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217812078-db1c4a7c-79ee-4bfa-a0fa-19d8e01f192a.jpg">
+
+다양한 국내 캠핑장 및 제휴업체 캠핑장의 정보를 한 눈에 제공해드립니다. 제휴업체 캠핑장은(Premium) 해당사이트에서 쉽게 예약할 수 있습니다. 제휴업체 사장님들께는 관리 페이지를 별도로 사용하실 수 있도록 제공합니다.
 
 
 <h1>제작기간 및 팀원 소개</h1>
@@ -37,5 +40,29 @@
 <img width="400" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/86142878/217805943-add69ebc-96a5-4e1c-83cb-6de89503084a.PNG">
 
 <h1> 핵심기능 </h1>
-
+<h3> User 기능 </h3>
+  &nbsp&nbsp간편한 소셜 로그인으로 CampFire 웹서비스를 이용해보세요! </br>
+  &nbsp&nbsp국내에 등록된 캠핑장 및 제휴업체의 캠핑장을 한 눈에 볼 수 있어요! </br>
+  &nbsp&nbsp키워드 및 태그 검색을 통해 조건에 맞는 캠핑장을 빠르게 검색할 수 있어요! </br>
+  &nbsp&nbsp지도 검색을 통해 캠핑장 주변에 있는 다양한 편의시설을 확인하세요! </br>
+  &nbsp&nbsp조건에 맞는 캠핑장을 찾으셨다면 원하는 날짜와 인원수로 예약신청을 해보세요! (제휴업체만 가능) </br>
+  &nbsp&nbsp갑작스런 일정이 있다면 예약을 취소할 수도 있습니다! </br>
+  &nbsp&nbsp&nbsp&nbsp(다만, 예약확정이 된 경우 웹 서비스에서 취소는 어렵습니다.) </br> 
+  &nbsp&nbsp자주 이용하는 캠핑장이 있다면 찜하기 기능을 이용해보세요! </br>
+  &nbsp&nbsp이용했던 캠핑장 이력을 확인할 수 있으며 리뷰를 등록하여 다른 사용자들에게 경험을 공유해보세요! </br>
+  &nbsp&nbsp채널톡을 이용하여 서비스 문의 및 관리자와 실시간 상담이 가능합니다! </br>
+<h3> Host 기능 (제휴업체) </h3>
+   &nbsp&nbsp제휴를 신청한 host는 자신의 캠핑장에 대한 정보를 등록할 수 있습니다! </br>
+   &nbsp&nbsphost의 캠핑장 컴포넌트는 특수 라벨이 붙어 프리미엄효과를 볼 수 있습니다! </br>
+   &nbsp&nbsphost의 캠핑장은 배너광고를 통해 상위에 노출할 수 있습니다! </br>
+   &nbsp&nbsphost는 등록된 캠핑장에 예약신청된 내역을 확인하고 확정 및 취소 등 관리를 할 수 있습니다! </br>
 <h1> Trouble Shooting </h1>
+
+  <img width="500" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217814202-2542ee1a-d0ab-44a3-b941-f66cb8f4eb18.png">
+  <img width="500" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217817022-f9626cfd-8c00-416d-998a-b8f601106ed4.png">
+  <img width="500" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217815983-130b8681-6c5a-4249-8eb9-8205ec4b286c.png">
+  <img width="500" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217817135-08504151-0f55-4b79-9f17-515716d3c32f.png">
+  <img width="500" alt="스크린샷 2022-12-29 오후 3 55 41" src="https://user-images.githubusercontent.com/117719695/217817173-499cf30c-927b-49ae-af81-a8795cc75c73.png">
+</div>
+
+
